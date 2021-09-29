@@ -26,6 +26,6 @@ class Aac extends DefaultAudio
      */
     public function getAvailableAudioCodecs()
     {
-        return array('libfdk-aac', 'aac');
+        return array('libfdk_aac', 'aac');
     }
 }

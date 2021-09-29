@@ -15,7 +15,7 @@ interface AudioInterface extends FormatInterface
     /**
      * Gets the audio kiloBitrate value.
      *
-     * @return int
+     * @return float
      */
     public function getAudioKiloBitrate();
 

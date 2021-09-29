@@ -18,7 +18,7 @@ class Vorbis extends DefaultAudio
 {
     public function __construct()
     {
-        $this->audioCodec = 'vorbis';
+        $this->audioCodec = 'libvorbis';
     }
 
     /**
@@ -34,6 +34,6 @@ class Vorbis extends DefaultAudio
      */
     public function getAvailableAudioCodecs()
     {
-        return array('vorbis');
+        return array('libvorbis');
     }
 }

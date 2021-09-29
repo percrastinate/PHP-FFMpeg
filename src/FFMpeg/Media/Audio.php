@@ -107,7 +107,7 @@ class Audio extends AbstractStreamableMedia
             $filters->add(new SimpleFilter(array('-threads', $this->driver->getConfiguration()->get('ffmpeg.threads'))));
         }
         if (null !== $format->getAudioCodec()) {
-            $filters->add(new SimpleFilter(array('-acodec', $format->getAudioCodec())));
+            $filters->add(new SimpleFilter(array('-codec:a', $format->getAudioCodec())));
         }
 
         foreach ($filters as $filter) {
@@ -115,13 +115,16 @@ class Audio extends AbstractStreamableMedia
         }
 
         if (null !== $format->getAudioKiloBitrate()) {
-            $commands[] = '-vbr';
+            $commands[] = '-qscale:a';
             $commands[] = $format->getAudioKiloBitrate();
         }
         if (null !== $format->getAudioChannels()) {
             $commands[] = '-ac';
             $commands[] = $format->getAudioChannels();
         }
+
+        // $commands = array('-y', '-i', $this->pathfile, '-codec:a', 'libvorbis','-qscale:a', $format->getAudioKiloBitrate(), );
+
         $commands[] = $outputPathfile;
 
         return $commands;
