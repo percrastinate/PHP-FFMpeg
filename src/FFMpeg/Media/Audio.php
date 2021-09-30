@@ -114,6 +114,13 @@ class Audio extends AbstractStreamableMedia
             $commands = array_merge($commands, $filter->apply($this, $format));
         }
 
+        $codec = $format->getAudioCodec();
+
+        if ($codec == 'flac') {
+            $commands[] = '-compression_level';
+            $commands[] = '12';
+        }
+
         if (null !== $format->getAudioKiloBitrate()) {
             $commands[] = '-qscale:a';
             $commands[] = $format->getAudioKiloBitrate();
