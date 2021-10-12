@@ -122,8 +122,27 @@ class Audio extends AbstractStreamableMedia
         }
 
         if (null !== $format->getAudioKiloBitrate()) {
+
+        if ($codec == 'libvorbis') {
             $commands[] = '-qscale:a';
             $commands[] = $format->getAudioKiloBitrate();
+        } else if ($codec == 'libopus') {
+            $commands[] = '-b:a';
+            $commands[] = $format->getAudioKiloBitrate();
+        } else if($codec == 'libmp3lame') {
+            if($format->getAudioKiloBitrate() == 320) {
+                $commands[] = '-b:a';
+                $commands[] = $format->getAudioKiloBitrate() .'k';
+            } else {
+                $commands[] = '-qscale:a';
+                $commands[] = $format->getAudioKiloBitrate();
+            }
+        } else {
+            $commands[] = '-b:a';
+            $commands[] = $format->getAudioKiloBitrate() .'k';
+        }
+
+
         }
         if (null !== $format->getAudioChannels()) {
             $commands[] = '-ac';

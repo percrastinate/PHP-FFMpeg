@@ -12,13 +12,13 @@
 namespace FFMpeg\Format\Audio;
 
 /**
- * The AAC audio format
+ * The Alac audio format
  */
-class Aac extends DefaultAudio
+class Opus extends DefaultAudio
 {
     public function __construct()
     {
-        $this->audioCodec = 'libfdk_aac';
+        $this->audioCodec = 'libopus';
     }
 
     /**
@@ -26,6 +26,6 @@ class Aac extends DefaultAudio
      */
     public function getAvailableAudioCodecs()
     {
-        return array('libfdk_aac');
+        return array('libopus');
     }
 }
